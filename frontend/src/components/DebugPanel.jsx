@@ -47,7 +47,7 @@ const DebugPanel = () => {
 
   if (!isOpen) {
     return (
-      <div className="fixed top-24 right-4 z-50">
+      <div className="fixed top-16 sm:top-24 right-2 sm:right-4 z-50">
         <Button
           onClick={() => {
             setIsOpen(true);
@@ -55,17 +55,17 @@ const DebugPanel = () => {
           }}
           variant="default"
           size="sm"
-          className="shadow-lg"
+          className="shadow-lg text-xs sm:text-sm"
         >
-          <Bug className="w-4 h-4 mr-2" />
-          Debug
+          <Bug className="w-3 h-3 sm:w-4 sm:h-4 mr-1 sm:mr-2" />
+          <span className="hidden xs:inline">Debug</span>
         </Button>
       </div>
     );
   }
 
   return (
-    <div className="fixed top-24 right-4 z-50 w-96 max-h-[calc(100vh-120px)] overflow-y-auto">
+    <div className="fixed top-16 sm:top-24 right-2 sm:right-4 left-2 sm:left-auto z-50 w-auto sm:w-96 max-h-[calc(100vh-120px)] overflow-y-auto">
       <Card className="glass shadow-2xl border-2 border-primary/50">
         <CardHeader className="flex flex-row items-center justify-between">
           <CardTitle className="text-lg">Debug Panel</CardTitle>
