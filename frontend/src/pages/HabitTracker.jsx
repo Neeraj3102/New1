@@ -140,8 +140,9 @@ const HabitTracker = () => {
   const monthKey = `${currentMonth.getFullYear()}-${(currentMonth.getMonth() + 1).toString().padStart(2, '0')}`;
   const totalPossibleCompletions = habits.length * days.length;
   const actualCompletions = Object.keys(habitCompletions).filter((key) => {
+    if (!habitCompletions[key]) return false;
     const [habitId, dateKey] = key.split('-');
-    return dateKey.startsWith(monthKey) && habitCompletions[key];
+    return dateKey && dateKey.startsWith(monthKey);
   }).length;
   const completionPercentage = totalPossibleCompletions > 0 ? (actualCompletions / totalPossibleCompletions) * 100 : 0;
 
