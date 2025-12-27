@@ -87,11 +87,9 @@ const HabitTracker = () => {
 
   const toggleCompletion = (habitId, dateKey) => {
     const key = `${habitId}-${dateKey}`;
-    const newValue = !habitCompletions[key];
-    console.log('Toggle completion:', { key, newValue, dateKey });
     setHabitCompletions({
       ...habitCompletions,
-      [key]: newValue,
+      [key]: !habitCompletions[key],
     });
   };
 
