@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Plus, Trash2, ChevronLeft, ChevronRight, GripVertical, BarChart3 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -19,23 +19,43 @@ const HabitTracker = () => {
   const [currentMonth, setCurrentMonth] = useState(new Date());
   const [newHabitName, setNewHabitName] = useState('');
   const [draggedHabit, setDraggedHabit] = useState(null);
+  const isInitialMountHabits = useRef(true);
+  const isInitialMountCompletions = useRef(true);
 
   useEffect(() => {
     const savedHabits = localStorage.getItem('focusflow_habits');
     if (savedHabits) {
-      setHabits(JSON.parse(savedHabits));
+      try {
+        const parsed = JSON.parse(savedHabits);
+        setHabits(parsed);
+      } catch (e) {
+        console.error('Error parsing saved habits:', e);
+      }
     }
     const savedCompletions = localStorage.getItem('focusflow_habit_completions');
     if (savedCompletions) {
-      setHabitCompletions(JSON.parse(savedCompletions));
+      try {
+        const parsed = JSON.parse(savedCompletions);
+        setHabitCompletions(parsed);
+      } catch (e) {
+        console.error('Error parsing saved completions:', e);
+      }
     }
   }, []);
 
   useEffect(() => {
+    if (isInitialMountHabits.current) {
+      isInitialMountHabits.current = false;
+      return;
+    }
     localStorage.setItem('focusflow_habits', JSON.stringify(habits));
   }, [habits]);
 
   useEffect(() => {
+    if (isInitialMountCompletions.current) {
+      isInitialMountCompletions.current = false;
+      return;
+    }
     localStorage.setItem('focusflow_habit_completions', JSON.stringify(habitCompletions));
   }, [habitCompletions]);
 
