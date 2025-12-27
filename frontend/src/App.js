@@ -6,6 +6,7 @@ import HabitTracker from './pages/HabitTracker';
 import MatrixView from './pages/MatrixView';
 import CalendarView from './pages/CalendarView';
 import Navigation from './components/Navigation';
+import DebugPanel from './components/DebugPanel';
 
 function App() {
   const [isDark, setIsDark] = useState(true);
