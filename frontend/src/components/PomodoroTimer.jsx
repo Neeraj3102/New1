@@ -75,7 +75,7 @@ const PomodoroTimer = ({ tasks }) => {
         clearInterval(intervalRef.current);
       }
     };
-  }, [isRunning, timeLeft]);
+  }, [isRunning, timeLeft, handleTimerComplete]);
 
   const handleTimerComplete = () => {
     setIsRunning(false);
