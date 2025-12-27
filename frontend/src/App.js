@@ -32,7 +32,7 @@ function App() {
         <Navigation isDark={isDark} toggleTheme={toggleTheme} />
         <main className="pt-20">
           <Routes>
-            <Route path="/" element={<DailyPlanner />} />
+            <Route path="/" element={<LandingPage />} />
             <Route path="/daily-planner" element={<DailyPlanner />} />
             <Route path="/habit-tracker" element={<HabitTracker />} />
             <Route path="/matrix-view" element={<MatrixView />} />
