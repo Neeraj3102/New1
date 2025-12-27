@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import { Play, Pause, RotateCcw, Volume2, VolumeX } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -75,8 +75,7 @@ const PomodoroTimer = ({ tasks }) => {
         clearInterval(intervalRef.current);
       }
     };
-  }, [isRunning, timeLeft, handleTimerComplete]);
-
+}, [isRunning, timeLeft]);
   const handleTimerComplete = () => {
     setIsRunning(false);
     if (settings.soundEnabled) {
