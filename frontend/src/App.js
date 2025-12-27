@@ -3,6 +3,7 @@ import '@/App.css';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import LandingPage from './pages/LandingPage';
 import DailyPlanner from './pages/DailyPlanner';
+import DayPlanner from './pages/DayPlanner';
 import HabitTracker from './pages/HabitTracker';
 import MatrixView from './pages/MatrixView';
 import CalendarView from './pages/CalendarView';
