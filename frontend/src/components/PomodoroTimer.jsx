@@ -76,16 +76,17 @@ const PomodoroTimer = ({ tasks }) => {
       }
     };
 }, [isRunning, timeLeft, handleTimerComplete]);
-  const handleTimerComplete = () => {
-    setIsRunning(false);
-    if (settings.soundEnabled) {
-      playCompletionSound();
-    }
-    if (mode === 'focus') {
-      const newRounds = rounds + 1;
-      setRounds(newRounds);
-    }
-  };
+ const handleTimerComplete = useCallback(() => {
+  setIsRunning(false);
+  if (settings.soundEnabled) {
+    playCompletionSound();
+  }
+  if (mode === 'focus') {
+    const newRounds = rounds + 1;
+    setRounds(newRounds);
+  }
+}, [settings.soundEnabled, mode, playCompletionSound, rounds]);
+
 
   const playCompletionSound = () => {
     const audio = new Audio('data:audio/wav;base64,UklGRnoGAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQoGAACBhYqFbF1fdJivrJBhNjVgodDbq2EcBj+a2/LDciUFLIHO8tiJNwgZaLvt559NEAxQp+PwtmMcBjiR1/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+DyvmwhBTGH0fPTgjMGHm7A7+OZSA0PVqzn77BdGAg+ltryxnMpBSuAzfLaizsIGGS57OihUBALTKXh8bllHAU2jdXyzn0vBSh+zPDckTsKE1y06+ypWBQLQ5zd8sFuJAUuhM/z1YU2Bhxqvu7mnEoPDlOq5O+zYBoIPJTY88p2KwUqf8vx3I0+CRZiturqpVIRC0mi4PK8aB8GM4nU8tGAMQYfadzu56RGDQ5RqOPxsmAbCDuS2PTLeSsFKX/M8d6PQAoUXLPq7KlXEwtJouDyvmwiBDGHzvPWhjQHHW3A7eeeSg4OUKfj8bJgGgg7kNjzyn0uBSh+y/HdjT4KFV+16+yoVREMSKHf8r5sIgQvhM3z14Y1Bxxtvu3mnksODU+n4/KyYRsIPZHY88t8LQUpfs3x3Y4+ChRcsurqp1URC0ef4PK+bSMEMIXO89aGNQcdbL7t5p5LDg1Pp+PytWIcCDyP2PPLfC0FKH3N8d2OPwoUW7Lq6qdVEQtHnt/yvm4kBC+EzvPXhjYHHGu+7uaeTA4NT6fk8rVjHAg8jtfzy3wuBSh9zvHdjz8KFVux6uqoVRIMR53f8r9vJAQug83z14c2Bxtrve7mnkwPDU6m5PO2Yx0IPY3X88p9LwUme8zw3o8/ChVaserqqVYRC0ad3vK/cCQELYHN89eHNwcbaLzu5p9LDw1NpuTztWMdCT2M1/PJfi8FJXnL8N6PQAsVWLDq6qlWEQtFnN7yv3EkBC2AzPPYiDcIGma77OafTBANS6Xk87ZkHQo9itbzyn0wBSR4yvDej0EMFVew6uupVxIMRJve8sBxJQUtf8vz2Ig4CBlluurnoVAQDEmk5PO3ZR4KPYnV88p+MQUkd8nw35FBDBVWr+rsqlgSDEKa3fLBciYFK37K89mJOQgZY7rq5qFREAw=');
