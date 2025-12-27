@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Plus, Trash2, Edit2, CheckCircle2, Circle, XCircle, ChevronLeft, ChevronRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -13,15 +13,25 @@ const DailyPlanner = () => {
   const [newTask, setNewTask] = useState({ title: '', description: '', category: 'today' });
   const [filter, setFilter] = useState('all');
   const [currentDate, setCurrentDate] = useState(new Date());
+  const isInitialMount = useRef(true);
 
   useEffect(() => {
     const savedTasks = localStorage.getItem('focusflow_tasks');
     if (savedTasks) {
-      setTasks(JSON.parse(savedTasks));
+      try {
+        const parsed = JSON.parse(savedTasks);
+        setTasks(parsed);
+      } catch (e) {
+        console.error('Error parsing saved tasks:', e);
+      }
     }
   }, []);
 
   useEffect(() => {
+    if (isInitialMount.current) {
+      isInitialMount.current = false;
+      return;
+    }
     localStorage.setItem('focusflow_tasks', JSON.stringify(tasks));
   }, [tasks]);
 
