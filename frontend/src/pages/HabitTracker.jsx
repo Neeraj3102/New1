@@ -141,11 +141,29 @@ const HabitTracker = () => {
   // Calculate statistics
   const monthKey = `${currentMonth.getFullYear()}-${(currentMonth.getMonth() + 1).toString().padStart(2, '0')}`;
   const totalPossibleCompletions = habits.length * days.length;
+  
+  console.log('Stats calculation:', {
+    monthKey,
+    totalHabits: habits.length,
+    totalDays: days.length,
+    totalPossibleCompletions,
+    habitCompletionsKeys: Object.keys(habitCompletions),
+    habitCompletions
+  });
+  
   const actualCompletions = Object.keys(habitCompletions).filter((key) => {
     if (!habitCompletions[key]) return false;
-    const [habitId, dateKey] = key.split('-');
-    return dateKey && dateKey.startsWith(monthKey);
+    const parts = key.split('-');
+    // Handle keys like "123456-2025-12-27" - habitId might have dashes, so take everything after first dash
+    const habitId = parts[0];
+    const dateKey = parts.slice(1).join('-');
+    const matches = dateKey && dateKey.startsWith(monthKey);
+    console.log('Checking key:', { key, habitId, dateKey, monthKey, matches });
+    return matches;
   }).length;
+  
+  console.log('Actual completions:', actualCompletions);
+  
   const completionPercentage = totalPossibleCompletions > 0 ? (actualCompletions / totalPossibleCompletions) * 100 : 0;
 
   // Daily progress
