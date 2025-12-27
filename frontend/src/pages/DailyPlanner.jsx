@@ -95,24 +95,6 @@ const DailyPlanner = () => {
 
   return (
     <div className="container mx-auto px-4 py-6 max-w-7xl animate-fade-in">
-      {/* Intro Section */}
-      <Card className="glass glass-hover mb-6 border-primary/20">
-        <CardContent className="p-6">
-          <div className="flex items-start space-x-4">
-            <div className="w-16 h-16 rounded-full bg-gradient-to-br from-primary to-accent flex items-center justify-center flex-shrink-0">
-              <span className="text-2xl font-bold text-primary-foreground">MS</span>
-            </div>
-            <div>
-              <h2 className="text-xl font-bold mb-2">Meet Shah</h2>
-              <p className="text-sm text-muted-foreground leading-relaxed">
-                Financial analyst and fitness enthusiast merging discipline with productivity. I believe that mastering your money and your body 
-                creates the foundation for achieving anything. This planner keeps me focused on what truly matters—one task, one rep, one day at a time.
-              </p>
-            </div>
-          </div>
-        </CardContent>
-      </Card>
-
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Left Column - Tasks */}
         <div className="lg:col-span-2 space-y-6">
