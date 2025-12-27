@@ -47,25 +47,26 @@ const DebugPanel = () => {
 
   if (!isOpen) {
     return (
-      <div className="fixed bottom-4 right-4 z-50">
+      <div className="fixed top-24 right-4 z-50">
         <Button
           onClick={() => {
             setIsOpen(true);
             loadStorageData();
           }}
-          variant="outline"
-          size="icon"
-          className="rounded-full w-12 h-12 shadow-lg"
+          variant="default"
+          size="sm"
+          className="shadow-lg"
         >
-          <Bug className="w-5 h-5" />
+          <Bug className="w-4 h-4 mr-2" />
+          Debug
         </Button>
       </div>
     );
   }
 
   return (
-    <div className="fixed bottom-4 right-4 z-50 w-96 max-h-[80vh] overflow-y-auto">
-      <Card className="glass shadow-2xl">
+    <div className="fixed top-24 right-4 z-50 w-96 max-h-[calc(100vh-120px)] overflow-y-auto">
+      <Card className="glass shadow-2xl border-2 border-primary/50">
         <CardHeader className="flex flex-row items-center justify-between">
           <CardTitle className="text-lg">Debug Panel</CardTitle>
           <div className="flex items-center space-x-2">
