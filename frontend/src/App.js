@@ -35,6 +35,7 @@ function App() {
           <Routes>
             <Route path="/" element={<LandingPage />} />
             <Route path="/daily-planner" element={<DailyPlanner />} />
+            <Route path="/day-planner" element={<DayPlanner />} />
             <Route path="/habit-tracker" element={<HabitTracker />} />
             <Route path="/matrix-view" element={<MatrixView />} />
             <Route path="/calendar-view" element={<CalendarView />} />
