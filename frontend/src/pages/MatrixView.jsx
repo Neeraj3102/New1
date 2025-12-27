@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Plus, Trash2, Edit2, GripVertical, AlertCircle, TrendingUp, Clock, Zap } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -60,15 +60,25 @@ const MatrixView = () => {
     notes: '',
     quadrant: 'urgent_important',
   });
+  const isInitialMount = useRef(true);
 
   useEffect(() => {
     const savedTasks = localStorage.getItem('focusflow_matrix_tasks');
     if (savedTasks) {
-      setTasks(JSON.parse(savedTasks));
+      try {
+        const parsed = JSON.parse(savedTasks);
+        setTasks(parsed);
+      } catch (e) {
+        console.error('Error parsing saved matrix tasks:', e);
+      }
     }
   }, []);
 
   useEffect(() => {
+    if (isInitialMount.current) {
+      isInitialMount.current = false;
+      return;
+    }
     localStorage.setItem('focusflow_matrix_tasks', JSON.stringify(tasks));
   }, [tasks]);
 
