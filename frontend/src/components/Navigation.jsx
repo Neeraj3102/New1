@@ -1,5 +1,5 @@
 import { Link, useLocation } from 'react-router-dom';
-import { CheckSquare, Calendar, Grid3x3, CalendarDays, Moon, Sun, Home } from 'lucide-react';
+import { CheckSquare, Calendar, Grid3x3, CalendarDays, Moon, Sun, Home, Clock } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 const Navigation = ({ isDark, toggleTheme }) => {
@@ -8,6 +8,7 @@ const Navigation = ({ isDark, toggleTheme }) => {
   const navItems = [
     { path: '/', label: 'Home', icon: Home },
     { path: '/daily-planner', label: 'Daily Planner', icon: CheckSquare },
+    { path: '/day-planner', label: 'Day Planner', icon: Clock },
     { path: '/habit-tracker', label: 'Habit Tracker', icon: Calendar },
     { path: '/matrix-view', label: 'Matrix View', icon: Grid3x3 },
     { path: '/calendar-view', label: 'Calendar View', icon: CalendarDays },
