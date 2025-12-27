@@ -22,7 +22,9 @@ const DailyPlanner = () => {
   }, []);
 
   useEffect(() => {
-    localStorage.setItem('focusflow_tasks', JSON.stringify(tasks));
+    if (tasks.length > 0 || localStorage.getItem('focusflow_tasks')) {
+      localStorage.setItem('focusflow_tasks', JSON.stringify(tasks));
+    }
   }, [tasks]);
 
   const addTask = () => {
