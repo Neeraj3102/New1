@@ -29,10 +29,10 @@ function App() {
   };
 
   return (
-    <div className="App min-h-screen bg-background">
+    <div className="App min-h-screen bg-background flex flex-col">
       <BrowserRouter>
         <Navigation isDark={isDark} toggleTheme={toggleTheme} />
-        <main className="pt-20">
+        <main className="pt-16 sm:pt-18 flex-1">
           <Routes>
             <Route path="/" element={<LandingPage />} />
             <Route path="/daily-planner" element={<DailyPlanner />} />
@@ -43,6 +43,7 @@ function App() {
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
         </main>
+        <Footer />
         <DebugPanel />
       </BrowserRouter>
     </div>
